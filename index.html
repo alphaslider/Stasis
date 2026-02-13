@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>S.T.A.S.I.S. // SUBZERO_COMMAND_DECK</title>
+    <style>
+        @font-face { font-family: 'data'; src: url('data.ttf'); }
+        
+        :root {
+            /* SUBZERO PSYCHO-SCHEMATIC */
+            --bg-obsidian: #05070a;
+            --panel-steel: #161b22;
+            --frost-trim: #30363d;
+            --ice-cyan: #00e5ff;
+            --electric-blue: #7df9ff;
+            --whiteout: #ffffff;
+            --rubber-pad: #0d1117;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-obsidian);
+            font-family: 'data', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            /* Subtle hardware scanline overlay */
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2) 0px,
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+
+        /* === THE SUBZERO TRIGGER === */
+        #menu-trigger {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 10000;
+            width: 32px;
+            height: 32px;
+            background: var(--panel-steel);
+            border: 1px solid var(--frost-trim);
+            color: var(--ice-cyan);
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+            user-select: none;
+        }
+
+        #menu-trigger:hover {
+            background: var(--ice-cyan);
+            color: var(--bg-obsidian);
+            box-shadow: 0 0 20px var(--ice-cyan);
+        }
+
+        /* === THE CRYOGENIC DRAWER === */
+        #side-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 160px;
+            background: rgba(5, 7, 10, 0.98); 
+            border-right: 1px solid var(--frost-trim);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px;
+            box-shadow: 20px 0 50px rgba(0,0,0,0.9);
+        }
+
+        #side-drawer.open {
+            transform: translateX(0);
+        }
+
+        /* === THE UNIT SWITCHES === */
+        .unit-btn {
+            background: transparent;
+            color: var(--frost-trim);
+            border: none;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+            padding: 18px 20px;
+            font-family: 'data', monospace;
+            font-size: 11px;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-align: left;
+            position: relative;
+            transition: all 0.3s;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+
+        .unit-btn:hover {
+            background: rgba(0, 229, 255, 0.03);
+            color: var(--whiteout);
+            padding-left: 28px;
+        }
+
+        /* Active State (The Ice Glow) */
+        .unit-btn.active {
+            color: var(--ice-cyan);
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.1), transparent);
+            border-left: 3px solid var(--ice-cyan);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .unit-btn.active::after {
+            content: 'READY';
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            font-size: 8px;
+            color: var(--electric-blue);
+            opacity: 0.8;
+        }
+
+        /* === THE VIEWPORT === */
+        .unit-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            background: var(--bg-obsidian);
+        }
+
+        .unit-frame.active-view {
+            opacity: 1;
+            pointer-events: all;
+            z-index: 5;
+        }
+
+        #click-shield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.4);
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        #click-shield.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .drawer-header {
+            padding: 0 20px 20px 20px; 
+            opacity: 0.4; 
+            font-size: 9px; 
+            color: var(--ice-cyan);
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-trigger" onclick="toggleMenu()">+</div>
+    <div id="click-shield" onclick="toggleMenu()"></div>
+
+    <div id="side-drawer">
+        <div class="drawer-header">S.T.A.S.I.S. // CORE</div>
+
+        <button class="unit-btn active" onclick="switchUnit(1)">
+            UNIT_01
+            <br><span style="font-size:9px; opacity:0.6">BAPSTEP_8</span>
+        </button>
+        <button class="unit-btn" onclick="switchUnit(2)">
+            UNIT_02
+            <br><span style="font-size:9px; opacity:0.6">SAMPLER</span>
+        </button>
+        <button class="unit-btn" onclick="switchUnit(3)">
+            UNIT_03
+            <br><span style="font-size:9px; opacity:0.6">LAZERBLADE_3</span>
+        </button>
+    </div>
+
+    <iframe id="u1" class="unit-frame active-view" src="https://alphaslider.github.io/BapStep8/"></iframe>
+    <iframe id="u2" class="unit-frame" src="https://alphaslider.github.io/HTML5SAMPLER/"></iframe>
+    <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/"></iframe>
+
+    <script>
+        const drawer = document.getElementById('side-drawer');
+        const shield = document.getElementById('click-shield');
+        const trigger = document.getElementById('menu-trigger');
+
+        function toggleMenu() {
+            drawer.classList.toggle('open');
+            shield.classList.toggle('active');
+            
+            if(drawer.classList.contains('open')) {
+                trigger.innerHTML = '×';
+                trigger.style.color = 'var(--whiteout)';
+                trigger.style.background = 'var(--ice-cyan)';
+            } else {
+                trigger.innerHTML = '+';
+                trigger.style.color = 'var(--ice-cyan)';
+                trigger.style.background = 'var(--panel-steel)';
+            }
+        }
+
+        function switchUnit(id) {
+            document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.unit-btn:nth-of-type(${id})`).classList.add('active');
+            
+            document.querySelectorAll('.unit-frame').forEach(f => f.classList.remove('active-view'));
+            document.getElementById(`u${id}`).classList.add('active-view');
+
+            setTimeout(toggleMenu, 200);
+        }
+    </script>
+
+</body>
+</html>
