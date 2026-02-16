@@ -195,11 +195,16 @@
             UNIT_03
             <br><span style="font-size:9px; opacity:0.6">LAZERBLADE_3</span>
         </button>
+        <button class="unit-btn" onclick="switchUnit(4)">
+            UNIT_04
+            <br><span style="font-size:9px; opacity:0.6">PITCH_SHIFT</span>
+        </button>
     </div>
 
     <iframe id="u1" class="unit-frame active-view" src="https://alphaslider.github.io/BapStep8/"></iframe>
     <iframe id="u2" class="unit-frame" src="https://alphaslider.github.io/HTML5SAMPLER/"></iframe>
     <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/"></iframe>
+    <iframe id="u4" class="unit-frame" src="https://alphaslider.github.io/SP224-Pitch-shifter/"></iframe>
 
     <script>
         const drawer = document.getElementById('side-drawer');
@@ -222,12 +227,17 @@
         }
 
         function switchUnit(id) {
+            // Deactivate all buttons
             document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+            // Activate specific button (matches order in DOM)
             document.querySelector(`.unit-btn:nth-of-type(${id})`).classList.add('active');
             
+            // Hide all iframes
             document.querySelectorAll('.unit-frame').forEach(f => f.classList.remove('active-view'));
+            // Show target iframe
             document.getElementById(`u${id}`).classList.add('active-view');
 
+            // Close menu after short delay
             setTimeout(toggleMenu, 200);
         }
     </script>
