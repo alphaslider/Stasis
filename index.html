@@ -7,7 +7,6 @@
         @font-face { font-family: 'data'; src: url('data.ttf'); }
         
         :root {
-            /* SUBZERO PSYCHO-SCHEMATIC */
             --bg-obsidian: #05070a;
             --panel-steel: #161b22;
             --frost-trim: #30363d;
@@ -25,7 +24,6 @@
             overflow: hidden;
             height: 100vh;
             width: 100vw;
-            /* Subtle hardware scanline overlay */
             background-image: repeating-linear-gradient(
                 0deg,
                 rgba(0, 0, 0, 0.2) 0px,
@@ -60,19 +58,6 @@
             background: var(--ice-cyan);
             color: var(--bg-obsidian);
             box-shadow: 0 0 20px var(--ice-cyan);
-        }
-
-        /* Notification indicator on menu trigger */
-        #menu-trigger.has-alert::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            width: 8px;
-            height: 8px;
-            background: var(--ice-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--ice-cyan);
         }
 
         /* === THE CRYOGENIC DRAWER === */
@@ -122,7 +107,6 @@
             padding-left: 24px;
         }
 
-        /* Active State (The Ice Glow) */
         .unit-btn.active {
             color: var(--ice-cyan);
             background: linear-gradient(90deg, rgba(0, 229, 255, 0.1), transparent);
@@ -159,126 +143,6 @@
             opacity: 1;
             pointer-events: all;
             z-index: 5;
-        }
-
-        /* === NATIVE CHAT PANEL STYLING (UNIT 05) === */
-        #u5.unit-frame {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            box-sizing: border-box;
-            padding: 16px 16px 16px 50px; /* contained padding preventing bottom overflow */
-            background: var(--bg-obsidian);
-        }
-
-        .chat-container {
-            flex: 1;
-            background: var(--panel-steel);
-            border: 1px solid var(--frost-trim);
-            display: flex;
-            flex-direction: column;
-            max-width: 100%;
-            height: 100%;
-            margin: 0 auto;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            box-sizing: border-box;
-        }
-
-        .chat-header-bar {
-            background: var(--rubber-pad);
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--frost-trim);
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: var(--ice-cyan);
-            text-transform: uppercase;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chat-msg-card {
-            background: var(--rubber-pad);
-            border-left: 2px solid var(--ice-cyan);
-            padding: 8px 12px;
-            font-size: 12px;
-            line-height: 1.4;
-            word-break: break-all;
-            color: #c9d1d9;
-        }
-
-        .chat-msg-card .meta {
-            font-size: 9px;
-            color: #8b949e;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .chat-msg-card .user {
-            color: var(--ice-cyan);
-            font-weight: bold;
-        }
-
-        .chat-form {
-            display: flex;
-            background: var(--rubber-pad);
-            border-top: 1px solid var(--frost-trim);
-            padding: 10px;
-            gap: 8px;
-        }
-
-        .chat-form input[type="text"] {
-            background: var(--bg-obsidian);
-            border: 1px solid var(--frost-trim);
-            color: var(--whiteout);
-            padding: 8px 12px;
-            font-size: 12px;
-            font-family: 'data', monospace;
-            outline: none;
-        }
-
-        .chat-form input[name="user"] {
-            width: 110px;
-        }
-
-        .chat-form input[name="msg"] {
-            flex: 1;
-        }
-
-        .chat-form input[type="text"]:focus {
-            border-color: var(--ice-cyan);
-            box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
-        }
-
-        .chat-form button {
-            background: var(--ice-cyan);
-            color: var(--bg-obsidian);
-            border: none;
-            padding: 0 18px;
-            font-weight: bold;
-            font-size: 11px;
-            font-family: 'data', monospace;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: opacity 0.2s;
-        }
-
-        .chat-form button:hover {
-            opacity: 0.85;
-            box-shadow: 0 0 10px var(--ice-cyan);
         }
 
         #click-shield {
@@ -343,24 +207,7 @@
     <iframe id="u2" class="unit-frame" src="https://alphaslider.github.io/HTML5SAMPLER/"></iframe>
     <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/"></iframe>
     <iframe id="u4" class="unit-frame" src="https://alphaslider.github.io/SP224-Pitch-shifter/"></iframe>
-
-    <!-- NATIVE CHAT UNIT (UNIT 05) -->
-    <div id="u5" class="unit-frame">
-        <div class="chat-container">
-            <div class="chat-header-bar">
-                <span>// SUBZERO_COMMS_FEED</span>
-                <span><span style="width:7px; height:7px; background:var(--ice-cyan); border-radius:50%; display:inline-block; box-shadow:0 0 6px var(--ice-cyan)"></span> LINKED</span>
-            </div>
-            
-            <div class="chat-messages" id="messageBox"></div>
-
-            <form class="chat-form" id="chatForm">
-                <input type="text" name="user" id="userInput" placeholder="ALIAS" required autocomplete="off">
-                <input type="text" name="msg" id="msgInput" placeholder="TRANSMIT PACKET..." required autocomplete="off">
-                <button type="submit">TRANSMIT</button>
-            </form>
-        </div>
-    </div>
+    <iframe id="u5" class="unit-frame" src="https://zoostreetkrewzsk.com/chat/chat.php"></iframe>
 
     <script>
         const drawer = document.getElementById('side-drawer');
@@ -383,131 +230,14 @@
         }
 
         function switchUnit(id) {
-            // Deactivate all buttons
             document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
-            // Activate specific button
             document.querySelector(`.unit-btn:nth-of-type(${id})`).classList.add('active');
             
-            // Hide all views
             document.querySelectorAll('.unit-frame').forEach(f => f.classList.remove('active-view'));
-            // Show target view
             document.getElementById(`u${id}`).classList.add('active-view');
 
-            // If switching to chat, clear notification alert dot
-            if(id === 5) {
-                trigger.classList.remove('has-alert');
-            }
-
-            // Close menu after short delay
             setTimeout(toggleMenu, 200);
         }
-
-        // --- NATIVE CHAT LOGIC & AUDIO SUBSYSTEM ---
-        const messageBox = document.getElementById('messageBox');
-        const chatForm = document.getElementById('chatForm');
-        const userInput = document.getElementById('userInput');
-        const msgInput = document.getElementById('msgInput');
-
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        function playBeep(type = 'receive') {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(type === 'send' ? 880 : 587.33, audioCtx.currentTime);
-            
-            gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
-            
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.15);
-        }
-
-        // Persist alias
-        if (localStorage.getItem('subzero_chat_user')) {
-            userInput.value = localStorage.getItem('subzero_chat_user');
-        }
-        userInput.addEventListener('input', () => {
-            localStorage.setItem('subzero_chat_user', userInput.value);
-        });
-
-        let lastKnownLength = 0;
-
-        async function fetchMessages(isAlertable = false) {
-            try {
-                const response = await fetch('https://zoostreetkrewzsk.com/chat/chat_data.json?' + new Date().getTime());
-                if (response.ok) {
-                    const data = await response.json();
-                    
-                    if (isAlertable && lastKnownLength > 0 && data.length > lastKnownLength) {
-                        playBeep('receive');
-                        trigger.classList.add('has-alert');
-                        document.title = "(!] COMMS // SUBZERO";
-                        setTimeout(() => document.title = "S.T.A.S.I.S. // SUBZERO_COMMAND_DECK", 3000);
-                    }
-                    
-                    lastKnownLength = data.length;
-                    
-                    let html = '';
-                    data.forEach(item => {
-                        html += `
-                            <div class="chat-msg-card">
-                                <div class="meta">
-                                    <span class="user">${item.user}</span>
-                                    <span>${item.time}</span>
-                                </div>
-                                <div class="text">${item.msg}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    const isAtBottom = messageBox.scrollHeight - messageBox.scrollTop <= messageBox.clientHeight + 50;
-                    messageBox.innerHTML = html;
-                    if (isAtBottom || !isAlertable) {
-                        messageBox.scrollTop = messageBox.scrollHeight;
-                    }
-                }
-            } catch (e) {
-                // Fail silently if offline or file initializing
-            }
-        }
-
-        // Cross-tab synchronization
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'subzero_trigger_sync') {
-                fetchMessages(true);
-            }
-        });
-
-        // Handle sending message
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new URLSearchParams(new FormData(chatForm));
-            msgInput.value = '';
-
-            playBeep('send');
-
-            await fetch('https://zoostreetkrewzsk.com/chat/chat.php', {
-                method: 'POST',
-                body: formData
-            });
-
-            await fetchMessages(false);
-            localStorage.setItem('subzero_trigger_sync', Date.now());
-        });
-
-        // Background polling every 3 seconds
-        setInterval(() => fetchMessages(true), 3000);
-
-        // Initial load
-        fetchMessages(false);
     </script>
 </body>
 </html>
