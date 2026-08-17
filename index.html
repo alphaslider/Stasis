@@ -165,7 +165,10 @@
         #u5.unit-frame {
             display: flex;
             flex-direction: column;
-            padding: 24px 24px 24px 60px; /* leaves room for the top-left menu trigger */
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            padding: 16px 16px 16px 50px; /* contained padding preventing bottom overflow */
             background: var(--bg-obsidian);
         }
 
@@ -175,11 +178,12 @@
             border: 1px solid var(--frost-trim);
             display: flex;
             flex-direction: column;
-            max-width: 900px;
-            width: 100%;
+            max-width: 100%;
+            height: 100%;
             margin: 0 auto;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-sizing: border-box;
         }
 
         .chat-header-bar {
