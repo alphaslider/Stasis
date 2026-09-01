@@ -1,21 +1,18 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>S.T.A.S.I.S. // SUBZERO_COMMAND_DECK</title>
     <style>
         @font-face { font-family: 'data'; src: url('data.ttf'); }
         :root {
-            /* SUBZERO PSYCHO-SCHEMATIC (Matched to DAW Dark Metal Aesthetic) */
             --bg-obsidian: #050608;
-            --panel-steel: #0b0c0f;
             --panel-inner: #111111;
-            --frost-trim: #1a1c22;
-            --ice-cyan: #00e5ff;
-            --electric-blue: #7df9ff;
+            --ice-cyan: #ffffff;
             --whiteout: #a3a3a3;
             --border-inset: #050505;
             --border-outset: #2d2d2d;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -24,12 +21,9 @@
             overflow: hidden;
             height: 100vh;
             width: 100vw;
-            /* Radial dot pattern matching the DAW container background */
             background-image: radial-gradient(#2d2d2d 1px, transparent 0);
             background-size: 6px 6px;
         }
-
-        /* === THE SUBZERO TRIGGER === */
         #menu-trigger {
             position: fixed;
             top: 10px;
@@ -38,11 +32,11 @@
             z-index: 10000;
             width: 32px;
             height: 32px;
-            background: #1f1f1f;
+            background: #181818;
             border: 1px solid #000;
             border-top: 1px solid #3c3c3c;
             border-left: none;
-            color: var(--ice-cyan);
+            color: var(--whiteout);
             font-size: 16px;
             line-height: 30px;
             text-align: right;
@@ -54,24 +48,20 @@
             box-shadow: 2px 2px 5px rgba(0,0,0,0.7);
             user-select: none;
         }
-
         #menu-trigger:hover {
             transform: translateX(0);
-            background: #242424;
-            color: var(--ice-cyan);
+            background: #222;
+            color: #fff;
             text-align: center;
             padding-right: 0;
         }
-
         #menu-trigger.open-active {
             transform: translateX(170px);
             text-align: center;
             padding-right: 0;
-            background: #151515;
+            background: #121212;
             border-top: 1px solid #000;
         }
-
-        /* === THE CRYOGENIC DRAWER (DAW Panel Styled) === */
         #side-drawer {
             position: fixed;
             top: 0;
@@ -89,14 +79,11 @@
             padding-top: 50px;
             box-shadow: 10px 10px 30px rgba(0,0,0,0.9);
         }
-
         #side-drawer.open {
             transform: translateX(0);
         }
-
-        /* === THE UNIT SWITCHES (DAW Rubber Button Theme) === */
         .unit-btn {
-            background: #1f1f1f;
+            background: #181818;
             color: var(--whiteout);
             border: 1px solid #000;
             border-top: 1px solid #3c3c3c;
@@ -115,42 +102,35 @@
             margin-bottom: 6px;
             box-sizing: border-box;
         }
-
         .unit-btn:hover {
-            color: var(--ice-cyan);
-            background: #242424;
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+            color: #fff;
+            background: #222;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
-
         .unit-btn:active {
             border-top: 1px solid #000;
             border-left: 1px solid #000;
             box-shadow: inset 3px 3px 8px rgba(0,0,0,0.9);
-            color: var(--ice-cyan);
-            background-color: #151515;
+            color: #fff;
+            background-color: #121212;
         }
-
-        /* Active State */
         .unit-btn.active {
-            color: var(--ice-cyan);
-            background: #151515;
-            border-left: 3px solid var(--ice-cyan);
+            color: #fff;
+            background: #121212;
+            border-left: 3px solid #fff;
             box-shadow: inset 3px 3px 8px rgba(0,0,0,0.9);
-            text-shadow: 0 0 5px var(--ice-cyan);
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
-
         .unit-btn.active::after {
             content: 'ACTIVE';
             position: absolute;
             right: 8px;
             top: 14px;
             font-size: 7px;
-            color: var(--ice-cyan);
+            color: #fff;
             opacity: 0.8;
             letter-spacing: 0px;
         }
-
-        /* === THE VIEWPORT / FRAMES === */
         .unit-frame {
             position: absolute;
             top: 0;
@@ -164,13 +144,11 @@
             z-index: 1;
             background: var(--bg-obsidian);
         }
-
         .unit-frame.active-view {
             opacity: 1;
             pointer-events: all;
             z-index: 5;
         }
-
         #click-shield {
             position: fixed;
             top: 0;
@@ -183,29 +161,26 @@
             pointer-events: none;
             transition: opacity 0.4s;
         }
-
         #click-shield.active {
             opacity: 1;
             pointer-events: all;
         }
-
         .drawer-header {
             padding: 0 15px 15px 15px;
             opacity: 0.5;
             font-size: 9px;
-            color: var(--ice-cyan);
+            color: var(--whiteout);
             letter-spacing: 2px;
             border-bottom: 1px solid #000;
             margin-bottom: 10px;
         }
-    </style></head><body>
-
+    </style>
+</head>
+<body>
     <div id="menu-trigger" onclick="toggleMenu()">+</div>
     <div id="click-shield" onclick="toggleMenu()"></div>
-
     <div id="side-drawer">
         <div class="drawer-header">S.T.A.S.I.S. // CORE</div>
-
         <button class="unit-btn active" onclick="switchUnit(1)">
             UNIT_01
             <br><span style="font-size:9px; opacity:0.6">BAPSTEP_8</span>
@@ -227,13 +202,12 @@
             <br><span style="font-size:9px; opacity:0.6">PRO_2</span>
         </button>
     </div>
-
-    <!-- IFRAME UNITS -->
-    <iframe id="u1" class="unit-frame active-view" src="https://alphaslider.github.io/BapStep8/"></iframe>
-    <iframe id="u2" class="unit-frame" src="https://alphaslider.github.io/HTML5SAMPLER/"></iframe>
-    <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/"></iframe>
-    <iframe id="u4" class="unit-frame" src="https://alphaslider.github.io/SP224-Pitch-shifter/"></iframe>
-    <iframe id="u5" class="unit-frame" src="https://alphaslider.github.io/cooltoolspro2/"></iframe>
+    
+    <iframe id="u1" class="unit-frame active-view" src="https://alphaslider.github.io/BapStep8/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
+    <iframe id="u2" class="unit-frame" src="https://alphaslider.github.io/HTML5SAMPLER/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
+    <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
+    <iframe id="u4" class="unit-frame" src="https://alphaslider.github.io/SP224-Pitch-shifter/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
+    <iframe id="u5" class="unit-frame" src="https://alphaslider.github.io/cooltoolspro2/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
 
     <script>
         const drawer = document.getElementById('side-drawer');
@@ -244,25 +218,27 @@
             drawer.classList.toggle('open');
             shield.classList.toggle('active');
             trigger.classList.toggle('open-active');
-            
+                        
             if(drawer.classList.contains('open')) {
                 trigger.innerHTML = '×';
-                trigger.style.color = 'var(--whiteout)';
-                trigger.style.background = '#151515';
+                trigger.style.color = '#fff';
+                trigger.style.background = '#121212';
             } else {
                 trigger.innerHTML = '+';
-                trigger.style.color = 'var(--ice-cyan)';
-                trigger.style.background = '#1f1f1f';
+                trigger.style.color = 'var(--whiteout)';
+                trigger.style.background = '#181818';
             }
         }
 
         function switchUnit(id) {
             document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.unit-btn:nth-of-type(${id})`).classList.add('active');
-            
+                        
             document.querySelectorAll('.unit-frame').forEach(f => f.classList.remove('active-view'));
             document.getElementById(`u${id}`).classList.add('active-view');
 
             setTimeout(toggleMenu, 200);
         }
-    </script></body></html>
+    </script>
+</body>
+</html>
