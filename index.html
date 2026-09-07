@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>S.T.A.S.I.S. // SUBZERO_COMMAND_DECK</title>
+    
+    <!-- Open Graph Metatags -->
+    <meta property="og:title" content="S.T.A.S.I.S. // SUBZERO_COMMAND_DECK">
+    <meta property="og:description" content="Cybernetic HTML5 audio command deck featuring step sequencers, web samplers, pitch shifters, and multi-track production modules.">
+    <meta property="og:image" content="openg.png">
+    <meta property="og:type" content="website">
+
     <style>
         @font-face { font-family: 'data'; src: url('data.ttf'); }
         :root {
@@ -212,9 +219,8 @@
     <iframe id="u3" class="unit-frame" src="https://alphaslider.github.io/LazerBlade3/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
     <iframe id="u4" class="unit-frame" src="https://alphaslider.github.io/SP224-Pitch-shifter/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
     <iframe id="u5" class="unit-frame" src="https://alphaslider.github.io/cooltoolspro2/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
-<iframe id="u6" class="unit-frame" src="https://alphaslider.github.io/pianorollsampler/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
+    <iframe id="u6" class="unit-frame" src="https://alphaslider.github.io/pianorollsampler/" allow="clipboard-read; clipboard-write; microphone; midi"></iframe>
 
-    
     <script>
         const drawer = document.getElementById('side-drawer');
         const shield = document.getElementById('click-shield');
@@ -224,7 +230,7 @@
             drawer.classList.toggle('open');
             shield.classList.toggle('active');
             trigger.classList.toggle('open-active');
-                        
+                    
             if(drawer.classList.contains('open')) {
                 trigger.innerHTML = '×';
                 trigger.style.color = '#fff';
@@ -239,7 +245,7 @@
         function switchUnit(id) {
             document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.unit-btn:nth-of-type(${id})`).classList.add('active');
-                        
+                    
             document.querySelectorAll('.unit-frame').forEach(f => f.classList.remove('active-view'));
             document.getElementById(`u${id}`).classList.add('active-view');
 
